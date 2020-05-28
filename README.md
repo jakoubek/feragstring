@@ -1,6 +1,31 @@
 # feragstring
 
-*feragstring* is a Go package for creating a Ferag string file from a JSON data structure. If you don't know what Ferag (the company) or a Ferag string is you probably don't need this package.
+*feragstring* is a Go package for creating a Ferag string file from a JSON data structure. If you don't know what Ferag (the company) or a Ferag string is you probably don't need this package ;-)
+
+## Usage
+
+```go
+fs := NewFeragString()
+fs.SetTitleName("EDITION1")
+
+fs.TitleInfo.SetPrintObjectName("EDITION1A")
+fs.TitleInfo.SetPublicationDate("2020-05-31")
+fs.TitleInfo.SetCountryCode("13")
+fs.TitleInfo.SetPrintObjectColor("00000000")
+
+pr1 := NewProductReference()
+pr1.SetProductName("MAIN")
+pr1.SetCopiesAssigned(25000)
+pr1.SetSupervision(1)
+pr1.SetOverlap(5)
+mp := MissingParameter{
+    missingRate: 1,
+    missingSize: 1,
+}
+pr1.SetMissingParameter(mp)
+pr1.SetIssueReference("MAIN01")
+fs.AddProductReference(pr1)
+``` 
 
 ## Supported messages
 
