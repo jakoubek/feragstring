@@ -1,6 +1,9 @@
 package feragstring
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 type FeragMessage struct {
 	messageStart string
@@ -21,7 +24,7 @@ func (fm *FeragMessage) MessageTemplate() MessageTemplateFunc {
 	return func(fm *FeragMessage, s string) string {
 		message := fm.getMessageStart()
 		message += s
-		message += fm.getMessageEnd() + linebreak
-		return message
+		message += fm.getMessageEnd()
+		return strings.TrimSpace(message) + linebreak
 	}
 }

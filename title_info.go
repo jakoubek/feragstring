@@ -20,6 +20,9 @@ func (ti *TitleInfo) SetPrintObjectName(printObjectName string) {
 }
 
 func (ti *TitleInfo) AdditionalInfo() string {
+	if ti.additionalInfo == "" {
+		return ""
+	}
 	return fmt.Sprintf("+08%-50s", ti.additionalInfo)
 }
 
@@ -28,6 +31,9 @@ func (ti *TitleInfo) SetAdditionalInfo(additionalInfo string) {
 }
 
 func (ti *TitleInfo) PrintObjectColor() string {
+	if ti.printObjectColor == "" {
+		return ""
+	}
 	return fmt.Sprintf("+94%-8s", ti.printObjectColor)
 }
 
@@ -36,6 +42,9 @@ func (ti *TitleInfo) SetPrintObjectColor(printObjectColor string) {
 }
 
 func (ti *TitleInfo) CountryCode() string {
+	if ti.countryCode == "" {
+		return ""
+	}
 	return fmt.Sprintf("+97%-2s", ti.countryCode)
 }
 
@@ -52,6 +61,9 @@ func (ti *TitleInfo) SetPublicationDate(publicationDateString string) {
 }
 
 func (ti *TitleInfo) PublicationDate() string {
+	if ti.publicationDate.IsZero() {
+		return ""
+	}
 	return fmt.Sprintf("+95%-6s", ti.publicationDate.Format(dateOutputFormat))
 }
 
@@ -72,6 +84,9 @@ func (ti *TitleInfo) Payload() string {
 }
 
 func (ti *TitleInfo) PrintObjectName() string {
+	if ti.printObjectName == "" {
+		return ""
+	}
 	return fmt.Sprintf("+93%-12s", ti.printObjectName)
 }
 

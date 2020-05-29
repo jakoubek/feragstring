@@ -11,6 +11,9 @@ type RouteListEntry struct {
 }
 
 func (r *RouteListEntry) CopiesInRoute() string {
+	if r.copiesInRoute == 0 {
+		return ""
+	}
 	return fmt.Sprintf("+23%06d", r.copiesInRoute)
 }
 
@@ -19,6 +22,9 @@ func (r *RouteListEntry) SetCopiesInRoute(copiesInRoute int) {
 }
 
 func (r *RouteListEntry) RampNumber() string {
+	if r.rampNumber == 0 {
+		return ""
+	}
 	return fmt.Sprintf("+25%02d", r.rampNumber)
 }
 
@@ -27,6 +33,9 @@ func (r *RouteListEntry) SetRampNumber(rampNumber int) {
 }
 
 func (r *RouteListEntry) RouteCode() string {
+	if r.routeCode == 0 {
+		return ""
+	}
 	return fmt.Sprintf("+79%05d", r.routeCode)
 }
 

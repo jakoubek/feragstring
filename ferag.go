@@ -13,6 +13,9 @@ type FeragString struct {
 	ProductReferencesNr int
 	RouteListEntries []*RouteListEntry
 	RouteListEntryCount int
+	RouteInfoEntries []*RouteInfo
+	ProductionDropEntries []*ProductionDrop
+	RouteEndEntries []*RouteEnd
 }
 
 func NewFeragString() *FeragString {
@@ -39,6 +42,18 @@ func (fs *FeragString) PrintOut() string {
 		info += rl.Message()
 	}
 
+	for _, ri := range fs.RouteInfoEntries {
+		info += ri.Message()
+	}
+
+	for _, pd := range fs.ProductionDropEntries {
+		info += pd.Message()
+	}
+
+	for _, re := range fs.RouteEndEntries {
+		info += re.Message()
+	}
+
 	info += fs.TitleEnd.Message()
 	return info
 }
@@ -55,9 +70,24 @@ func (fs *FeragString) AddProductReference(pr *ProductReference) error {
 
 func (fs *FeragString) AddRouteListEntry(rl *RouteListEntry) error {
 	fs.RouteListEntryCount++
-	if rl.routeCode == 0 {
-		rl.SetRouteCode(fs.RouteListEntryCount)
-	}
+	//if rl.routeCode == 0 {
+	//	rl.SetRouteCode(fs.RouteListEntryCount)
+	//}
 	fs.RouteListEntries = append(fs.RouteListEntries, rl)
+	return nil
+}
+
+func (fs *FeragString) AddRouteInfo(ri *RouteInfo) error {
+	fs.RouteInfoEntries = append(fs.RouteInfoEntries, ri)
+	return nil
+}
+
+func (fs *FeragString) AddProductionDrop(pd *ProductionDrop) error {
+	fs.ProductionDropEntries = append(fs.ProductionDropEntries, pd)
+	return nil
+}
+
+func (fs *FeragString) AddRouteEnd(re *RouteEnd) error {
+	fs.RouteEndEntries = append(fs.RouteEndEntries, re)
 	return nil
 }

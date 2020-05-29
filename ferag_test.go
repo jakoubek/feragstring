@@ -3,8 +3,58 @@ package feragstring
 import (
 	"fmt"
 	"io/ioutil"
+	"strings"
 	"testing"
 )
+
+func TestShortestFeragString(t *testing.T) {
+	fs := NewFeragString()
+	fs.SetTitleName("DEMO2009")
+
+	rl := NewRouteListEntry()
+	rl.SetRouteName("E1_ROUTE_100")
+	fs.AddRouteListEntry(rl)
+
+	ri := NewRouteInfo()
+	ri.SetRouteName("E1_ROUTE_100")
+	ri.SetEditionName("E1")
+	fs.AddRouteInfo(ri)
+
+	pd := NewProductionDrop()
+	pd.SetAgentName("R100RE001")
+	pd.SetNumberOfCopies(123)
+	fs.AddProductionDrop(pd)
+
+	re := NewRouteEnd()
+	re.SetRouteName("E1_ROUTE_100")
+	fs.AddRouteEnd(re)
+
+	producedContent := fs.PrintOut()
+
+	want := getTestFileContent("D:\\TEMP\\Feragstring\\minimal_want.txt")
+
+	fmt.Println("--WANT-----------------")
+	fmt.Println(want)
+	fmt.Println("-----------------------")
+	fmt.Println("--PRODUCED-------------")
+	fmt.Println(producedContent)
+	fmt.Println("-----------------------")
+	fmt.Println("=======================")
+
+	filename := "D:\\TEMP\\Feragstring\\minimal_test.txt"
+	err := ioutil.WriteFile(filename, []byte(producedContent), 0644)
+	if err != nil {
+		panic(err)
+	}
+
+
+	fmt.Printf("COMPARE: %d", strings.Compare(producedContent, want))
+	if strings.Compare(producedContent, want) != 0 {
+	//if strings.TrimSpace(producedContent) != strings.TrimSpace(want) {
+		t.Errorf("Produced result does not equal to minimal example")
+	}
+
+}
 
 func TestNewFeragString(t *testing.T) {
 	fs := NewFeragString()
@@ -59,7 +109,7 @@ func TestNewFeragString(t *testing.T) {
 
 	testcontent := getTestFileContent("D:\\TEMP\\Feragstring\\test.txt")
 	fmt.Println("=======================")
-	fmt.Println("TEST:")
+	fmt.Println("WANT:")
 	fmt.Println(testcontent)
 	fmt.Println("-----------------------")
 	fmt.Println("PRODUCED:")
