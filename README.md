@@ -1,3 +1,5 @@
+[![Go Report Card](https://goreportcard.com/badge/github.com/jakoubek/feragstring)](https://goreportcard.com/report/github.com/jakoubek/feragstring)
+
 # feragstring
 
 *feragstring* is a Go package for creating a FERAG string file from a JSON data structure. If you don't know what FERAG (the company) or a FERAG string is you probably don't need this package ;-)
