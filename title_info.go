@@ -7,12 +7,17 @@ import (
 
 type TitleInfo struct {
 	FeragMessage
-	printObjectName string
-	titleName string
-	publicationDate time.Time
-	countryCode string
-	printObjectColor string
-	additionalInfo string
+	printObjectName         string
+	titleName               string
+	publicationDate         time.Time
+	countryCode             string
+	printObjectColor        string
+	additionalInfo          string
+	showEmptyAdditionalInfo bool
+}
+
+func (ti *TitleInfo) ShowEmptyAdditionalInfo() {
+	ti.showEmptyAdditionalInfo = true
 }
 
 func (ti *TitleInfo) SetPrintObjectName(printObjectName string) {
@@ -20,7 +25,7 @@ func (ti *TitleInfo) SetPrintObjectName(printObjectName string) {
 }
 
 func (ti *TitleInfo) AdditionalInfo() string {
-	if ti.additionalInfo == "" {
+	if ti.additionalInfo == "" && ti.showEmptyAdditionalInfo == false {
 		return ""
 	}
 	return fmt.Sprintf("+08%-50s", ti.additionalInfo)
@@ -100,7 +105,8 @@ func (ti *TitleInfo) SetTitleName(titleName string) {
 
 func NewTitleInfo() *TitleInfo {
 	t := TitleInfo{
-		FeragMessage: FeragMessage{"2440", "!"},
+		FeragMessage:            FeragMessage{"2440", "!"},
+		showEmptyAdditionalInfo: false,
 	}
 	return &t
 }
