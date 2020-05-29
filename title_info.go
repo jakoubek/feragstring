@@ -28,7 +28,9 @@ func (ti *TitleInfo) SetPrintObjectName(printObjectName string) {
 	ti.printObjectName = printObjectName
 }
 
-// AdditionalInfo returns the additional info segment (+08) FERAG-formatted
+// AdditionalInfo returns the additional info segment (+08) FERAG-formatted.
+// It is not returned if empty UNLESS the flag showEmptyAdditionalInfo is
+// set to true.
 func (ti *TitleInfo) AdditionalInfo() string {
 	if ti.additionalInfo == "" && ti.showEmptyAdditionalInfo == false {
 		return ""
