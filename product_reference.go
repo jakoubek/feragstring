@@ -128,7 +128,7 @@ func (pr *ProductReference) SetProductReferenceNumber(productReferenceNumber int
 
 func NewProductReference() *ProductReference {
 	pr := ProductReference{
-		FeragMessage:     FeragMessage{"2450", "!"},
+		FeragMessage: FeragMessage{"2450", "!"},
 		missingParameter: MissingParameter{
 			missingRate: 0,
 			missingSize: 1,

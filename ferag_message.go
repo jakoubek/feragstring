@@ -7,7 +7,7 @@ import (
 
 type FeragMessage struct {
 	messageStart string
-	messageEnd string
+	messageEnd   string
 }
 
 func (fm *FeragMessage) getMessageStart() string {

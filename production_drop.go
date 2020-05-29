@@ -4,7 +4,7 @@ import "fmt"
 
 type ProductionDrop struct {
 	FeragMessage
-	agentName string
+	agentName      string
 	numberOfCopies int
 }
 

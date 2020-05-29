@@ -17,7 +17,7 @@ func (re *RouteEnd) SetRouteName(routeName string) {
 
 func NewRouteEnd() *RouteEnd {
 	re := RouteEnd{
-		FeragMessage:        FeragMessage{
+		FeragMessage: FeragMessage{
 			messageStart: "2406",
 			messageEnd:   "!",
 		},

@@ -2,26 +2,26 @@ package feragstring
 
 const (
 	dateInputFormatISO = "2006-01-02"
-	dateOutputFormat = "060102"
-	linebreak = "\r\n"
+	dateOutputFormat   = "060102"
+	linebreak          = "\r\n"
 )
 
 type FeragString struct {
-	TitleInfo *TitleInfo
-	TitleEnd *TitleEnd
-	ProductReferences []*ProductReference
-	ProductReferencesNr int
-	RouteListEntries []*RouteListEntry
-	RouteListEntryCount int
-	RouteInfoEntries []*RouteInfo
+	TitleInfo             *TitleInfo
+	TitleEnd              *TitleEnd
+	ProductReferences     []*ProductReference
+	ProductReferencesNr   int
+	RouteListEntries      []*RouteListEntry
+	RouteListEntryCount   int
+	RouteInfoEntries      []*RouteInfo
 	ProductionDropEntries []*ProductionDrop
-	RouteEndEntries []*RouteEnd
+	RouteEndEntries       []*RouteEnd
 }
 
 func NewFeragString() *FeragString {
 	fs := FeragString{
 		TitleInfo: NewTitleInfo(),
-		TitleEnd: NewTitleEnd(),
+		TitleEnd:  NewTitleEnd(),
 	}
 	return &fs
 }
@@ -32,8 +32,10 @@ func (fs *FeragString) SetTitleName(titleName string) {
 }
 
 func (fs *FeragString) PrintOut() string {
+	// +2440 | first message is the title info
 	info := fs.TitleInfo.Message()
 
+	// +2450 | list of product references
 	for _, pr := range fs.ProductReferences {
 		info += pr.Message()
 	}
@@ -54,6 +56,7 @@ func (fs *FeragString) PrintOut() string {
 		info += re.Message()
 	}
 
+	// +2441 | last message is the corresponding title end
 	info += fs.TitleEnd.Message()
 	return info
 }

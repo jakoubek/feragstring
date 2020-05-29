@@ -72,7 +72,6 @@ func (ti *TitleInfo) PublicationDate() string {
 	return fmt.Sprintf("+95%-6s", ti.publicationDate.Format(dateOutputFormat))
 }
 
-
 func (ti *TitleInfo) Message() string {
 	message := ti.FeragMessage.MessageTemplate()
 	return message(&ti.FeragMessage, ti.Payload())
@@ -110,4 +109,3 @@ func NewTitleInfo() *TitleInfo {
 	}
 	return &t
 }
-

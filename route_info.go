@@ -4,10 +4,10 @@ import "fmt"
 
 type RouteInfo struct {
 	FeragMessage
-	routeName string
-	topsheetMarker int
+	routeName           string
+	topsheetMarker      int
 	eaAddressDefinition int
-	editionName string
+	editionName         string
 }
 
 func (ri *RouteInfo) EditionName() string {
@@ -44,7 +44,7 @@ func (ri *RouteInfo) RouteName() string {
 
 func NewRouteInfo() *RouteInfo {
 	ri := RouteInfo{
-		FeragMessage:        FeragMessage{
+		FeragMessage: FeragMessage{
 			messageStart: "2402",
 			messageEnd:   "!",
 		},

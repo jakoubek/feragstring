@@ -4,9 +4,9 @@ import "fmt"
 
 type RouteListEntry struct {
 	FeragMessage
-	routeName string
-	routeCode int
-	rampNumber int
+	routeName     string
+	routeCode     int
+	rampNumber    int
 	copiesInRoute int
 }
 
