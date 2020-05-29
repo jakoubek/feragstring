@@ -23,6 +23,13 @@ type MissingParameter struct {
 	missingSize int
 }
 
+func NewMissingParameter(missingRate, missingSize int) MissingParameter {
+	return MissingParameter{
+		missingRate: missingRate,
+		missingSize: missingSize,
+	}
+}
+
 func (pr *ProductReference) IssueReference() string {
 	return fmt.Sprintf("+99195%-8s", pr.issueReference)
 }
