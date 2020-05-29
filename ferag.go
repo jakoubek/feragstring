@@ -77,6 +77,10 @@ func (fs *FeragString) AddRouteListEntry(rl *RouteListEntry) error {
 	return nil
 }
 
+func (fs *FeragString) NextRouteCode() int {
+	return fs.RouteListEntryCount + 1
+}
+
 func (fs *FeragString) AddRouteInfo(ri *RouteInfo) error {
 	fs.RouteInfoEntries = append(fs.RouteInfoEntries, ri)
 	return nil
