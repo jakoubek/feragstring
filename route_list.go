@@ -22,7 +22,7 @@ func (r *RouteListEntry) SetCopiesInRoute(copiesInRoute int) {
 }
 
 func (r *RouteListEntry) RampNumber() string {
-	if r.rampNumber == 0 {
+	if r.rampNumber == -1 {
 		return ""
 	}
 	return fmt.Sprintf("+25%02d", r.rampNumber)
@@ -57,6 +57,7 @@ func NewRouteListEntry() *RouteListEntry {
 			messageStart: "2401",
 			messageEnd:   "!",
 		},
+		rampNumber: -1,
 	}
 	return &rl
 }
