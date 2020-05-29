@@ -1,6 +1,6 @@
 # feragstring
 
-*feragstring* is a Go package for creating a FERAG string file from a JSON data structure. If you don't know what Ferag (the company) or a Ferag string is you probably don't need this package ;-)
+*feragstring* is a Go package for creating a FERAG string file from a JSON data structure. If you don't know what FERAG (the company) or a FERAG string is you probably don't need this package ;-)
 
 ## The shortest possible FERAG string
 
@@ -54,6 +54,8 @@ fs.AddProductReference(pr1)
 - Product Reference (%2450)
 - Route List Entry (%2401)
 - Route Info (%2402)
+- Production Drop (%2403)
+- Route End (%2406)
 
 ## Installation
 
