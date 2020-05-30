@@ -27,7 +27,7 @@ The variable values are:
 ## Usage
 
 ```go
-fs := NewFeragString()
+fs := feragstring.NewFeragString()
 fs.SetTitleName("EDITION1")
 
 fs.TitleInfo.SetPrintObjectName("EDITION1A")
@@ -35,18 +35,22 @@ fs.TitleInfo.SetPublicationDate("2020-05-31")
 fs.TitleInfo.SetCountryCode("13")
 fs.TitleInfo.SetPrintObjectColor("00000000")
 
-pr1 := NewProductReference()
+pr1 := feragstring.NewProductReference()
 pr1.SetProductName("MAIN")
 pr1.SetCopiesAssigned(25000)
 pr1.SetSupervision(1)
 pr1.SetOverlap(5)
-mp := MissingParameter{
-    missingRate: 1,
-    missingSize: 1,
-}
+mp := feragstring.NewMissingParameter(1, 1)
 pr1.SetMissingParameter(mp)
 pr1.SetIssueReference("MAIN01")
 fs.AddProductReference(pr1)
+
+rl1 := feragstring.NewRouteListEntry()
+rl1.SetRouteName("ROUTE001")
+rl1.SetRouteCode(fs.NextRouteCode())
+rl1.SetRampNumber(0)
+rl1.SetCopiesInRoute(1500)
+fs.AddRouteListEntry(rl1)
 ``` 
 
 ## Supported messages
