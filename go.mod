@@ -1,3 +1,3 @@
-module github.com/jakoubek.net/feragstring
+module github.com/jakoubek/feragstring
 
 go 1.14
