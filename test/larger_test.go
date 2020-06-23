@@ -2,8 +2,8 @@ package test
 
 import (
 	"fmt"
+	"github.com/jakoubek/feragstring"
 	"io/ioutil"
-	"jakoubek.net/feragstring"
 	"testing"
 )
 
