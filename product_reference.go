@@ -147,6 +147,7 @@ func (pr *ProductReference) Payload() string {
 	data += pr.Supervision()
 	data += pr.Overlap()
 	data += pr.FeedingMode()
+	data += pr.Scatter()
 	data += pr.MissingParameter()
 	data += pr.IssueReference()
 	return data

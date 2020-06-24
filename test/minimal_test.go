@@ -1,8 +1,8 @@
 package test
 
 import (
+	"github.com/jakoubek/feragstring"
 	"io/ioutil"
-	"jakoubek.net/feragstring"
 	"strings"
 	"testing"
 )
