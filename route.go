@@ -117,10 +117,6 @@ func (ri *Route) SetTopsheetTemplateDirectory(topsheetTemplateDirectory int) {
 	ri.topsheetTemplateDirectory = topsheetTemplateDirectory
 }
 
-func (ri *Route) SetProductReferenceNumber(productReferenceNumber int) {
-	ri.productReferenceNumber = productReferenceNumber
-}
-
 func NewRoute() *Route {
 	r := Route{
 		rampNumber: -1,
