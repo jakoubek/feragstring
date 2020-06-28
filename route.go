@@ -32,6 +32,18 @@ func (r *Route) GetRouteListEntry() *RouteListEntry {
 func (r *Route) GetRouteMessage() string {
 	ri := NewRouteInfo()
 	ri.SetRouteName(r.routeName)
+	ri.SetLimit(r.limit)
+	ri.SetMaxStack(r.maxStack)
+	ri.SetStandard(r.standard)
+	ri.SetParameterN(r.parameterN)
+	ri.SetMaxBundle(r.maxBundle)
+	ri.SetParameterSz(r.parameterSz)
+	ri.SetTopsheetMarker(r.topsheetMarker)
+	ri.SetEaMarker(r.eaMarker)
+	ri.SetEaAddressDefinition(r.eaAddressDefinition)
+	ri.SetTopsheetTemplateDirectory(r.topsheetTemplateDirectory)
+	ri.SetEditionName(r.editionName)
+	ri.SetProductReferenceNumber(r.productReferenceNumber)
 	info := ri.Message()
 
 	for _, pd := range r.ProductionDrops {
