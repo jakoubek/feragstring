@@ -16,7 +16,7 @@ type Route struct {
 	eaAddressDefinition       int
 	topsheetTemplateDirectory int
 	editionName               string
-	productReferenceNumber    int
+	productReferenceNumbers   []int
 	ProductionDrops           []*ProductionDrop
 }
 
@@ -56,6 +56,10 @@ func (r *Route) GetRouteMessage() string {
 	info += re.Message()
 
 	return info
+}
+
+func (r *Route) AddProductReferenceNumber(prnr int) {
+	r.productReferenceNumbers = append(r.productReferenceNumbers, prnr)
 }
 
 func (r *Route) AddProductionDrop(pd *ProductionDrop) error {

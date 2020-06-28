@@ -16,7 +16,7 @@ type RouteInfo struct {
 	eaAddressDefinition       int
 	topsheetTemplateDirectory int
 	editionName               string
-	productReferenceNumber    int
+	productReferenceNumbers   []int
 }
 
 func (ri *RouteInfo) ParameterSz() string {
@@ -27,12 +27,16 @@ func (ri *RouteInfo) SetParameterSz(parameterSz int) {
 	ri.parameterSz = parameterSz
 }
 
-func (ri *RouteInfo) ProductReferenceNumber() string {
-	return fmt.Sprintf("+41%02d", ri.productReferenceNumber)
+func (ri *RouteInfo) ProductReferenceNumbers() string {
+	var prreffmt string
+	for _, pr := range ri.productReferenceNumbers {
+		prreffmt += fmt.Sprintf("+41%02d", pr)
+	}
+	return prreffmt
 }
 
-func (ri *RouteInfo) SetProductReferenceNumber(productReferenceNumber int) {
-	ri.productReferenceNumber = productReferenceNumber
+func (ri *RouteInfo) AddProductReferenceNumber(productReferenceNumber int) {
+	ri.productReferenceNumbers = append(ri.productReferenceNumbers, productReferenceNumber)
 }
 
 func (ri *RouteInfo) TopsheetTemplateDirectory() string {
