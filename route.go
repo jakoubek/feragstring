@@ -43,7 +43,9 @@ func (r *Route) GetRouteMessage() string {
 	ri.SetEaAddressDefinition(r.eaAddressDefinition)
 	ri.SetTopsheetTemplateDirectory(r.topsheetTemplateDirectory)
 	ri.SetEditionName(r.editionName)
-	ri.SetProductReferenceNumber(r.productReferenceNumber)
+	for _, pr := range r.productReferenceNumbers {
+		ri.AddProductReferenceNumber(pr)
+	}
 	info := ri.Message()
 
 	for _, pd := range r.ProductionDrops {
