@@ -156,7 +156,7 @@ func (ri *RouteInfo) Payload() string {
 	data += ri.EaAddressDefinition()
 	data += ri.TopsheetTemplateDirectory()
 	data += ri.EditionName()
-	data += ri.ProductReferenceNumber()
+	data += ri.ProductReferenceNumbers()
 	return data
 }
 
