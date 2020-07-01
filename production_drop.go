@@ -4,10 +4,11 @@ import "fmt"
 
 type ProductionDrop struct {
 	FeragMessage
-	agentName      string
-	numberOfCopies int
-	dontProduce    bool
-	topsheetData   string
+	agentName         string
+	numberOfCopies    int
+	ControlCharacters ControlCharacterSet
+	dontProduce       bool
+	topsheetData      string
 }
 
 func (pd *ProductionDrop) TopsheetData() string {
@@ -31,19 +32,6 @@ func (pd *ProductionDrop) TopsheetData() string {
 
 func (pd *ProductionDrop) SetTopsheetData(topsheetData string) {
 	pd.topsheetData = topsheetData
-}
-
-func (pd *ProductionDrop) ControlCharacter() string {
-	var ccCount int
-	var cc string
-	if pd.dontProduce == true {
-		cc += "D"
-		ccCount++
-	}
-	if ccCount == 0 {
-		return ""
-	}
-	return fmt.Sprintf("+14%-16s", cc)
 }
 
 func (pd *ProductionDrop) SetDontProduce() {
@@ -72,7 +60,7 @@ func NewProductionDrop() *ProductionDrop {
 			messageStart: "2403",
 			messageEnd:   "!",
 		},
-		dontProduce: false,
+		ControlCharacters: ControlCharacterSet{},
 	}
 	return &pd
 }
@@ -80,7 +68,7 @@ func NewProductionDrop() *ProductionDrop {
 func (pd *ProductionDrop) Payload() string {
 	data := pd.AgentName()
 	data += pd.NumberOfCopies()
-	data += pd.ControlCharacter()
+	data += pd.ControlCharacters.GetControlCharactersMessage()
 	return data
 }
 
