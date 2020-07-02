@@ -85,3 +85,9 @@ feragString := fs.PrintOut()
 ```bash
 go get -u github.com/jakoubek/feragstring
 ``` 
+
+## Need commercial support?
+
+I offer commercial support for newspaper companies who want to setup their own FERAG string generation.
+
+See https://www.jakoubek.net/ferag-string-erzeugen (German) or write an email to <a href="mailto:info@jakoubek.net">info@jakoubek.net</a>.
