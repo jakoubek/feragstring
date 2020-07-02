@@ -2,7 +2,7 @@
 
 # feragstring
 
-*feragstring* is a Go package for creating a FERAG string file from a JSON data structure. If you don't know what FERAG (the company) or a FERAG string is you probably don't need this package ;-)
+*feragstring* is a Go package for creating a FERAG string file programmatically. If you don't know what FERAG (the company) or a FERAG string is you probably don't need this package ;-)
 
 ## The shortest possible FERAG string
 
@@ -27,14 +27,17 @@ The variable values are:
 ## Usage
 
 ```go
+// create a FERAG string object
 fs := feragstring.NewFeragString()
 fs.SetTitleName("EDITION1")
 
+// set title parameters
 fs.TitleInfo.SetPrintObjectName("EDITION1A")
 fs.TitleInfo.SetPublicationDate("2020-05-31")
 fs.TitleInfo.SetCountryCode("13")
 fs.TitleInfo.SetPrintObjectColor("00000000")
 
+// add a product
 pr1 := feragstring.NewProductReference()
 pr1.SetProductName("MAIN")
 pr1.SetCopiesAssigned(25000)
@@ -45,12 +48,25 @@ pr1.SetMissingParameter(mp)
 pr1.SetIssueReference("MAIN01")
 fs.AddProductReference(pr1)
 
-rl1 := feragstring.NewRouteListEntry()
-rl1.SetRouteName("ROUTE001")
-rl1.SetRouteCode(fs.NextRouteCode())
-rl1.SetRampNumber(0)
-rl1.SetCopiesInRoute(1500)
-fs.AddRouteListEntry(rl1)
+// add a route
+rt := feragstring.NewRoute()
+rt.SetRouteName("ROUTE001")
+rt.SetRouteCode(fs.NextRouteCode())
+rt.SetRampNumber(0)
+rt.SetCopiesInRoute(1500)
+rt.SetLimit(1)
+rt.SetMaxStack(13)
+rt.SetStandard(40)
+rt.SetParameterN(4)
+rt.SetMaxBundle(40)
+rt.SetTopsheetMarker(5)
+rt.SetEaMarker(0)
+rt.SetTopsheetTemplateDirectory(20)
+rt.AddProductReferenceNumber(1)
+fs.AddRoute(rt)
+
+// get the FERAG string (the write it to a file...) 
+feragString := fs.PrintOut()
 ``` 
 
 ## Supported messages
