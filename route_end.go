@@ -18,7 +18,7 @@ func (re *RouteEnd) SetRouteName(routeName string) {
 	re.routeName = routeName
 }
 
-// NewRouteEnd  instantiates a new Route End
+// NewRouteEnd instantiates a new Route End
 // struct and returns a pointer to it.
 func NewRouteEnd() *RouteEnd {
 	re := RouteEnd{
