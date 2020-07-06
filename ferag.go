@@ -6,6 +6,9 @@ const (
 	linebreak          = "\r\n"
 )
 
+// FeragString is the root struct for creating
+// a FERAG string. One FeragString instance returns
+// the output for one FERAG string.
 type FeragString struct {
 	TitleInfo             *TitleInfo
 	TitleEnd              *TitleEnd
@@ -20,6 +23,8 @@ type FeragString struct {
 	RouteEndEntries       []*RouteEnd
 }
 
+// NewFeragString instantiates a new FeragString
+// struct and returns a pointer to it.
 func NewFeragString() *FeragString {
 	fs := FeragString{
 		TitleInfo: NewTitleInfo(),
@@ -28,11 +33,13 @@ func NewFeragString() *FeragString {
 	return &fs
 }
 
+// SetTitleName sets the title name field
 func (fs *FeragString) SetTitleName(titleName string) {
 	fs.TitleInfo.SetTitleName(titleName)
 	fs.TitleEnd.SetTitleName(titleName)
 }
 
+// PrintOut returns the final FERAG string of the FeragString instance
 func (fs *FeragString) PrintOut() string {
 	// +2440 | first message is the title info
 	info := fs.TitleInfo.Message()
@@ -74,6 +81,8 @@ func (fs *FeragString) PrintOut() string {
 	return info
 }
 
+// AddProductReference adds a Product Reference instance to the list
+// of product references of the FeragString
 func (fs *FeragString) AddProductReference(pr *ProductReference) error {
 	fs.ProductReferencesNr++
 	pr.SetProductReferenceNumber(fs.ProductReferencesNr)
@@ -84,17 +93,23 @@ func (fs *FeragString) AddProductReference(pr *ProductReference) error {
 	return nil
 }
 
+// AddRoute adds a Route to the list of routes of the FeragString
 func (fs *FeragString) AddRoute(r *Route) error {
 	fs.RouteCount++
 	fs.Routes = append(fs.Routes, r)
 	return nil
 }
 
+// NextRouteCode returns the next numeric route code.
+// Use this method to get an automatically incremented
+// counter value for the routes of a FeragString.
 func (fs *FeragString) NextRouteCode() int {
 	return fs.RouteCount + 1
 	//return fs.RouteListEntryCount + 1
 }
 
+// Deprecated: AddRouteListEntry adds a route list entry to a FeragString.
+// Use AddRoute instead.
 func (fs *FeragString) AddRouteListEntry(rl *RouteListEntry) error {
 	fs.RouteListEntryCount++
 	//if rl.routeCode == 0 {
@@ -104,16 +119,22 @@ func (fs *FeragString) AddRouteListEntry(rl *RouteListEntry) error {
 	return nil
 }
 
+// Deprecated: AddRouteInfo adds a route info to a FeragString.
+// Use AddRoute instead.
 func (fs *FeragString) AddRouteInfo(ri *RouteInfo) error {
 	fs.RouteInfoEntries = append(fs.RouteInfoEntries, ri)
 	return nil
 }
 
+// Deprecated: AddProductionDrop adds a ProductionDrop to a FeragString.
+// Use AddProductionDrop on the route struct instead.
 func (fs *FeragString) AddProductionDrop(pd *ProductionDrop) error {
 	fs.ProductionDropEntries = append(fs.ProductionDropEntries, pd)
 	return nil
 }
 
+// Deprecated: AddRouteEnd adds a Route End to a FeragString.
+// Not necessary anymore. Routes are automatically ended now.
 func (fs *FeragString) AddRouteEnd(re *RouteEnd) error {
 	fs.RouteEndEntries = append(fs.RouteEndEntries, re)
 	return nil
