@@ -113,7 +113,7 @@ func (ti *TitleInfo) PrintObjectName() string {
 
 // TitleName returns the title name segment (+40) FERAG-formatted
 func (ti *TitleInfo) TitleName() string {
-	return fmt.Sprintf("+40%-8s", ti.titleName)
+	return fmt.Sprintf("+40%-8.8s", ti.titleName)
 }
 
 // SetTitleName sets the title name segment (+40)
