@@ -78,17 +78,17 @@ func NewRouteListEntry() *RouteListEntry {
 
 // Payload returns the formatted FERAG string
 // for embedding in the message
-func (rl *RouteListEntry) Payload() string {
-	data := rl.RouteName()
-	data += rl.RouteCode()
-	data += rl.RampNumber()
-	data += rl.CopiesInRoute()
+func (r *RouteListEntry) Payload() string {
+	data := r.RouteName()
+	data += r.RouteCode()
+	data += r.RampNumber()
+	data += r.CopiesInRoute()
 	return data
 }
 
 // Message returns the formatted FERAG string
 // for the complete route list entry
-func (rl *RouteListEntry) Message() string {
-	message := rl.FeragMessage.MessageTemplate()
-	return message(&rl.FeragMessage, rl.Payload())
+func (r *RouteListEntry) Message() string {
+	message := r.FeragMessage.MessageTemplate()
+	return message(&r.FeragMessage, r.Payload())
 }
