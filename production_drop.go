@@ -38,10 +38,6 @@ func (pd *ProductionDrop) SetTopsheetData(topsheetData string) {
 	pd.topsheetData = topsheetData
 }
 
-func (pd *ProductionDrop) SetDontProduce() {
-	pd.dontProduce = true
-}
-
 // NumberOfCopies returns the formatted number of copies in the route
 func (pd *ProductionDrop) NumberOfCopies() string {
 	return fmt.Sprintf("+13%05d", pd.numberOfCopies)
