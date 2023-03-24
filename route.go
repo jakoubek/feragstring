@@ -117,6 +117,10 @@ func (ri *Route) SetTopsheetTemplateDirectory(topsheetTemplateDirectory int) {
 	ri.topsheetTemplateDirectory = topsheetTemplateDirectory
 }
 
+func (ri *Route) SetEditionName(editionName string) {
+	ri.editionName = editionName
+}
+
 func NewRoute() *Route {
 	r := Route{
 		rampNumber: -1,
