@@ -47,7 +47,7 @@ func (pr *ProductReference) SetMissingParameter(missingParameter MissingParamete
 }
 
 func (pr *ProductReference) Scatter() string {
-	return fmt.Sprintf("+99102%06d", pr.scatter)
+	return fmt.Sprintf("+99276%06d", pr.scatter)
 }
 
 func (pr *ProductReference) SetScatter(scatter int) {
@@ -151,7 +151,7 @@ func (pr *ProductReference) Payload() string {
 	data += pr.Supervision()
 	data += pr.Overlap()
 	data += pr.FeedingMode()
-	data += pr.Scatter()
+	//data += pr.Scatter()
 	data += pr.MissingParameter()
 	data += pr.IssueReference()
 	return data
