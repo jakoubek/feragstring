@@ -11,6 +11,7 @@ type TitleInfo struct {
 	printObjectName         string
 	titleName               string
 	publicationDate         time.Time
+	issueReference          string
 	countryCode             string
 	printObjectColor        string
 	additionalInfo          string
@@ -97,10 +98,22 @@ func (ti *TitleInfo) Payload() string {
 	data := ti.PrintObjectName()
 	data += ti.TitleName()
 	data += ti.PublicationDate()
+	data += ti.IssueReference()
 	data += ti.CountryCode()
 	data += ti.PrintObjectColor()
 	data += ti.AdditionalInfo()
 	return data
+}
+
+func (ti *TitleInfo) SetIssueReference(issueReference string) {
+	ti.issueReference = issueReference
+}
+
+func (ti *TitleInfo) IssueReference() string {
+	if ti.issueReference == "" {
+		return ""
+	}
+	return fmt.Sprintf("+99195%8s", ti.issueReference)
 }
 
 // PrintObjectName returns the print object name segment (+93) FERAG-formatted
