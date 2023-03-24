@@ -6,11 +6,12 @@ import "fmt"
 // underneath a route
 type ProductionDrop struct {
 	FeragMessage
-	agentName         string
-	numberOfCopies    int
-	ControlCharacters ControlCharacterSet
-	dontProduce       bool
-	topsheetData      string
+	agentName               string
+	numberOfCopies          int
+	ControlCharacters       ControlCharacterSet
+	dontProduce             bool
+	topsheetData            string
+	productReferenceNumbers []int
 }
 
 // TopsheetData returns the formatted topsheet data segment
@@ -36,6 +37,20 @@ func (pd *ProductionDrop) TopsheetData() string {
 // SetTopsheetData sets the topsheet data to a given string
 func (pd *ProductionDrop) SetTopsheetData(topsheetData string) {
 	pd.topsheetData = topsheetData
+}
+
+// ProductReferenceNumbers returns the string of TSL-formatted ProductReferenceNumbers
+func (pd *ProductionDrop) ProductReferenceNumbers() string {
+	var prreffmt string
+	for _, pr := range pd.productReferenceNumbers {
+		prreffmt += fmt.Sprintf("+99141%03d", pr)
+	}
+	return prreffmt
+}
+
+// AddProductReferenceNumber adds a numeric ProductReferenceNumber to the production drop
+func (pd *ProductionDrop) AddProductReferenceNumber(productReferenceNumber int) {
+	pd.productReferenceNumbers = append(pd.productReferenceNumbers, productReferenceNumber)
 }
 
 // NumberOfCopies returns the formatted number of copies in the route
@@ -77,6 +92,7 @@ func (pd *ProductionDrop) Payload() string {
 	data := pd.AgentName()
 	data += pd.NumberOfCopies()
 	data += pd.ControlCharacters.GetControlCharactersMessage()
+	data += pd.ProductReferenceNumbers()
 	return data
 }
 
