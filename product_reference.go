@@ -119,11 +119,15 @@ func (pr *ProductReference) SetProductName(productName string) {
 }
 
 func (pr *ProductReference) ProductReferenceNumber() string {
-	return fmt.Sprintf("+41%02d", pr.productReferenceNumber)
+	return fmt.Sprintf("+99141%03d", pr.productReferenceNumber)
 }
 
 func (pr *ProductReference) SetProductReferenceNumber(productReferenceNumber int) {
 	pr.productReferenceNumber = productReferenceNumber
+}
+
+func (pr *ProductReference) GetProductReferenceNumber() int {
+	return pr.productReferenceNumber
 }
 
 func NewProductReference() *ProductReference {

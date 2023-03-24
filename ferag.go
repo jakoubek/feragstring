@@ -84,8 +84,10 @@ func (fs *FeragString) PrintOut() string {
 // AddProductReference adds a Product Reference instance to the list
 // of product references of the FeragString
 func (fs *FeragString) AddProductReference(pr *ProductReference) error {
-	fs.ProductReferencesNr++
-	pr.SetProductReferenceNumber(fs.ProductReferencesNr)
+	if pr.productReferenceNumber == 0 {
+		fs.ProductReferencesNr++
+		pr.SetProductReferenceNumber(fs.ProductReferencesNr)
+	}
 	if pr.productReferenceNumber == 1 && pr.productUsageType == 0 {
 		pr.SetProductUsageType(1)
 	}
