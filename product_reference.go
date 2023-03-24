@@ -31,6 +31,9 @@ func NewMissingParameter(missingRate, missingSize int) MissingParameter {
 }
 
 func (pr *ProductReference) IssueReference() string {
+	if pr.issueReference == "" {
+		return ""
+	}
 	return fmt.Sprintf("+99195%-8s", pr.issueReference)
 }
 
