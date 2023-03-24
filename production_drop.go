@@ -9,6 +9,12 @@ type ProductionDrop struct {
 	agentName               string
 	numberOfCopies          int
 	ControlCharacters       ControlCharacterSet
+	limit                   int
+	maxStack                int
+	standard                int
+	parameterN              int
+	maxBundle               int
+	parameterSz             int
 	dontProduce             bool
 	topsheetData            string
 	productReferenceNumbers []int
@@ -32,6 +38,54 @@ func (pd *ProductionDrop) TopsheetData() string {
 	}
 	message := fm.MessageTemplate()
 	return message(&fm, tsdSegment)
+}
+
+func (pd *ProductionDrop) MaxBundle() string {
+	return fmt.Sprintf("+34%04d", pd.maxBundle)
+}
+
+func (pd *ProductionDrop) SetMaxBundle(maxBundle int) {
+	pd.maxBundle = maxBundle
+}
+
+func (pd *ProductionDrop) ParameterN() string {
+	return fmt.Sprintf("+33%04d", pd.parameterN)
+}
+
+func (pd *ProductionDrop) SetParameterN(parameterN int) {
+	pd.parameterN = parameterN
+}
+
+func (pd *ProductionDrop) Standard() string {
+	return fmt.Sprintf("+32%04d", pd.standard)
+}
+
+func (pd *ProductionDrop) SetStandard(standard int) {
+	pd.standard = standard
+}
+
+func (pd *ProductionDrop) MaxStack() string {
+	return fmt.Sprintf("+31%04d", pd.maxStack)
+}
+
+func (pd *ProductionDrop) SetMaxStack(maxStack int) {
+	pd.maxStack = maxStack
+}
+
+func (pd *ProductionDrop) Limit() string {
+	return fmt.Sprintf("+30%04d", pd.limit)
+}
+
+func (pd *ProductionDrop) SetLimit(limit int) {
+	pd.limit = limit
+}
+
+func (pd *ProductionDrop) ParameterSz() string {
+	return fmt.Sprintf("+35%04d", pd.parameterSz)
+}
+
+func (pd *ProductionDrop) SetParameterSz(parameterSz int) {
+	pd.parameterSz = parameterSz
 }
 
 // SetTopsheetData sets the topsheet data to a given string
@@ -92,6 +146,12 @@ func (pd *ProductionDrop) Payload() string {
 	data := pd.AgentName()
 	data += pd.NumberOfCopies()
 	data += pd.ControlCharacters.GetControlCharactersMessage()
+	data += pd.Limit()
+	data += pd.MaxStack()
+	data += pd.Standard()
+	data += pd.ParameterN()
+	data += pd.MaxBundle()
+	data += pd.ParameterSz()
 	data += pd.ProductReferenceNumbers()
 	return data
 }
